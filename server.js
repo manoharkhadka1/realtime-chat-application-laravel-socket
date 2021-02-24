@@ -21,7 +21,7 @@ redis.on('message', function(channel, message) {
         let receiver_id = data.receiver_id;
         let event = message.event;
 
-        io.to(`${users[receiver_id]}`).emit(channel + ':' + message.event, data);
+        io.to(`${users[receiver_id]}`).emit(channel + ':' + event, data);
     }
 });
 
