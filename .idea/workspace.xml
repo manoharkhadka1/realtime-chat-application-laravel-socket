@@ -132,7 +132,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../company" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -163,6 +169,20 @@
       <workItem from="1597144015585" duration="5089000" />
       <workItem from="1597385856447" duration="34000" />
       <workItem from="1597547822853" duration="1228000" />
+      <workItem from="1612772208349" duration="1270000" />
+      <workItem from="1612924651222" duration="4369000" />
+      <workItem from="1613098796134" duration="35000" />
+      <workItem from="1613445557889" duration="3004000" />
+      <workItem from="1613540534469" duration="163000" />
+      <workItem from="1620971859402" duration="2832000" />
+      <workItem from="1620976592660" duration="357000" />
+      <workItem from="1620978115310" duration="15010000" />
+      <workItem from="1621142881654" duration="104000" />
+      <workItem from="1621143262784" duration="34000" />
+      <workItem from="1623843390863" duration="122000" />
+      <workItem from="1623843626768" duration="16000" />
+      <workItem from="1629125875641" duration="1156000" />
+      <workItem from="1629128017364" duration="1088000" />
     </task>
     <servers />
   </component>
@@ -170,25 +190,21 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="694" y="354" width="588" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597129231103">
+    <state x="726" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620985613700">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="694" y="354" width="588" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1597129231103" />
-    <state x="726" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596813772445">
+    <state x="726" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1620985613700" />
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1621143294546">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="726" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1596813772445" />
-    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1597646230518">
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1621143294546" />
+    <state x="683" y="291" width="620" height="522" key="find.popup" timestamp="1629127630000">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1597646230518" />
-    <state x="67" y="27" width="1397" height="789" key="dock-window-1" timestamp="1597116624358">
+    <state x="683" y="291" width="620" height="522" key="find.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1629127630000" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1629125886103">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="67" y="27" width="1397" height="789" key="dock-window-1/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1597116624358" />
-    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1597569636039">
-      <screen x="67" y="27" width="1853" height="1053" />
-    </state>
-    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1597569636039" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1629125886103" />
   </component>
 </project>

@@ -14,8 +14,7 @@
                 <ul class="list-group list-chat-item">
                     @if($users->count())
                         @foreach($users as $user)
-                            <li class="chat-user-list
-                                @if($user->id == $friendInfo->id) active @endif">
+                            <li class="chat-user-list">
                                 <a href="{{ route('message.conversation', $user->id) }}">
                                     <div class="chat-image">
                                         {!! makeImageFromName($user->name) !!}
@@ -40,7 +39,7 @@
                         @foreach($groups as $group)
                             <li class="chat-user-list">
                                 <a href="{{ route('message-groups.show', $group->id) }}">
-                                {{ $group->name }}
+                                    {{ $group->name }}
                                 </a>
                             </li>
                         @endforeach
@@ -50,16 +49,10 @@
 
         </div>
 
-        <div class="col-md-9 chat-section">
+        <div class="col-md-6 chat-section">
             <div class="chat-header">
                 <div class="chat-image">
-                    {!! makeImageFromName($user->name) !!}
-                </div>
-
-                <div class="chat-name font-weight-bold">
-                    {{ $user->name }}
-                    <i class="fa fa-circle user-status-head" title="away"
-                       id="userStatusHead{{$friendInfo->id}}"></i>
+                    {{ $currentGroup->name }}
                 </div>
             </div>
 
@@ -90,6 +83,22 @@
                     </button>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-3">
+            <h4>{{ $currentGroup->name }}</h4>
+            @if(isset($currentGroup->message_group_members) && !empty($currentGroup->message_group_members))
+                <ul class="list-group">
+                    @foreach($currentGroup->message_group_members as $member)
+                        @if(isset($member->user))
+                            <li class="list-group-item">
+                                {!! makeImageFromName($member->user->name) !!}
+                                {{ $member->user->name }}
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
 
@@ -146,59 +155,62 @@
             let ip_address = '127.0.0.1';
             let socket_port = '8005';
             let socket = io(ip_address + ':' + socket_port);
-            let friendId = "{{ $friendInfo->id }}";
+            let groupId = "{!! $currentGroup->id !!}";
+            let groupName = "{!! $currentGroup->name !!}";
 
             socket.on('connect', function() {
+                let data = {group_id:groupId, user_id:user_id, room:"group"+groupId};
                 socket.emit('user_connected', user_id);
+                socket.emit('joinGroup', data);
             });
 
-            socket.on('updateUserStatus', (data) => {
-                let $userStatusIcon = $('.user-status-icon');
-                $userStatusIcon.removeClass('text-success');
-                $userStatusIcon.attr('title', 'Away');
-
-                $.each(data, function (key, val) {
-                    if (val !== null && val !== 0) {
-                        let $userIcon = $(".user-icon-"+key);
-                        $userIcon.addClass('text-success');
-                        $userIcon.attr('title','Online');
-                    }
-                });
-            });
+            // socket.on('updateUserStatus', (data) => {
+            //     let $userStatusIcon = $('.user-status-icon');
+            //     $userStatusIcon.removeClass('text-success');
+            //     $userStatusIcon.attr('title', 'Away');
+            //
+            //     $.each(data, function (key, val) {
+            //         if (val !== null && val !== 0) {
+            //             let $userIcon = $(".user-icon-"+key);
+            //             $userIcon.addClass('text-success');
+            //             $userIcon.attr('title','Online');
+            //         }
+            //     });
+            // });
 
             $chatInput.keypress(function (e) {
-               let message = $(this).html();
-               if (e.which === 13 && !e.shiftKey) {
-                   $chatInput.html("");
-                   sendMessage(message);
-                   return false;
-               }
+                let message = $(this).html();
+                if (e.which === 13 && !e.shiftKey) {
+                    $chatInput.html("");
+                    sendMessage(message);
+                    return false;
+                }
             });
 
             function sendMessage(message) {
-                let url = "{{ route('message.send-message') }}";
+                let url = "{{ route('message.send-group-message') }}";
                 let form = $(this);
                 let formData = new FormData();
                 let token = "{{ csrf_token() }}";
 
                 formData.append('message', message);
                 formData.append('_token', token);
-                formData.append('receiver_id', friendId);
+                formData.append('message_group_id', groupId);
 
                 appendMessageToSender(message);
 
                 $.ajax({
-                   url: url,
-                   type: 'POST',
-                   data: formData,
+                    url: url,
+                    type: 'POST',
+                    data: formData,
                     processData: false,
                     contentType: false,
                     dataType: 'JSON',
-                   success: function (response) {
-                       if (response.success) {
-                           console.log(response.data);
-                       }
-                   }
+                    success: function (response) {
+                        if (response.success) {
+                            console.log(response.data);
+                        }
+                    }
                 });
             }
 
@@ -231,8 +243,8 @@
             }
 
             function appendMessageToReceiver(message) {
-                let name = '{{ $friendInfo->name }}';
-                let image = '{!! makeImageFromName($friendInfo->name) !!}';
+                let name = message.sender_name;
+                let image = '';
 
                 let userInfo = '<div class="col-md-12 user-info">\n' +
                     '<div class="chat-image">\n' + image +
@@ -260,7 +272,7 @@
 
             socket.on("private-channel:App\\Events\\PrivateMessageEvent", function (message)
             {
-               appendMessageToReceiver(message);
+                appendMessageToReceiver(message);
             });
 
             let $addGroupModal = $("#addGroupModal");
@@ -269,6 +281,11 @@
             });
 
             $("#selectMember").select2();
+
+            socket.on("groupMessage", function (message)
+            {
+                appendMessageToReceiver(message);
+            });
         });
     </script>
 @endpush

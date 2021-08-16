@@ -28,3 +28,8 @@ Route::get('conversation/{userId}', 'MessageController@conversation')
     ->name('message.conversation');
 Route::post('send-message', 'MessageController@sendMessage')
     ->name('message.send-message');
+
+Route::post('send-group-message', 'MessageController@sendGroupMessage')
+    ->name('message.send-group-message');
+
+Route::resource('message-groups', 'MessageGroupController');
